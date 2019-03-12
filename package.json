@@ -1,7 +1,7 @@
 {
   "name": "grunt-webapppool",
   "description": "Grunt integration for Powershell WebAppPool commands",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "homepage": "https://github.com/RobinHerbots/grunt-webapppool",
   "author": {
     "name": "Robin Herbots",
@@ -14,12 +14,7 @@
   "bugs": {
     "url": "https://github.com/RobinHerbots/grunt-webapppool/issues"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/RobinHerbots/grunt-webapppool/blob/master/LICENSE-MIT"
-    }
-  ],
+  "license": "MIT",
   "engines": {
     "node": ">= 0.8.0"
   },
@@ -32,7 +27,8 @@
     "grunt-mocha-cli": "^4.0.0",
     "mocha": "^6.0.2",
     "grunt": "~1.0.3",
-    "load-grunt-tasks": "^4.0.0"
+    "load-grunt-tasks": "^4.0.0",
+    "grunt-bump": "^0.8.0"
   },
   "dependencies": {
     "flopmang": "^0.0.1"
