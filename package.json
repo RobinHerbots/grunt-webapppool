@@ -34,6 +34,6 @@
     "flopmang": "^0.0.1"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin", "WebAppPool", "powershell", "IIS", "AppPool"
   ]
 }

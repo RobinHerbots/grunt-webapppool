@@ -4,6 +4,7 @@ module.exports = function (grunt) {
 
     // Project configuration.
     grunt.initConfig({
+        pkg: grunt.file.readJSON("package.json"),
         watch: {
             dev: {
                 files: ['tasks/*.js', 'lib/*.js', 'test/*.js'],
@@ -36,10 +37,16 @@ module.exports = function (grunt) {
         bump: {
             options: {
                 files: ['package.json'],
-                commitFiles: ['-a'],
-                pushTo: 'origin'
+                updateConfigs: ['pkg'],
+                commit: true,
+                createTag: true,
+                push: true,
+                pushTo: 'origin',
+                tagName: `v%VERSION%`,
+                tagMessage: `Version %VERSION% (${grunt.template.today('yyyymmdd')})}`
             }
         }
+
     });
 
     // Actually load this plugin's task(s).
