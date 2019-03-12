@@ -1,50 +1,47 @@
-/*
- * grunt-webapppool
- * https://github.com/RobinHerbots/grunt-webapppool
- *
- * Copyright (c) 2019 Robin Herbots
- * Licensed under the MIT license.
- */
-
 'use strict';
+var commands = require('../lib/commands');
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
-  // Please see the Grunt documentation for more information regarding task
-  // creation: http://gruntjs.com/creating-tasks
+    function wrapCommand(fn) {
+        return function () {
+            var self = this;
 
-  grunt.registerMultiTask('webapppool', 'Grunt integration for Powershell WebAppPool commands', function() {
-    // Merge task-specific and/or target-specific options with these defaults.
-    var options = this.options({
-      punctuation: '.',
-      separator: ', '
-    });
+            function exec() {
+                var args = Array.prototype.slice.call(arguments);
+                var callback = args.pop();
+                var options = self.options({
+                    verbose: false
+                });
+                var spawnOpts = {};
 
-    // Iterate over all specified file groups.
-    this.files.forEach(function(f) {
-      // Concat specified files.
-      var src = f.src.filter(function(filepath) {
-        // Warn on and remove invalid source files (if nonull was set).
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
-          return false;
-        } else {
-          return true;
-        }
-      }).map(function(filepath) {
-        // Read file source.
-        return grunt.file.read(filepath);
-      }).join(grunt.util.normalizelf(options.separator));
+                //build spawn options based on task options
+                if (options.cwd) {
+                    //verify that the specified cwd exists
+                    if (grunt.file.isDir(options.cwd)) {
+                        spawnOpts.cwd = options.cwd;
+                    } else {
+                        throw new Error('The specified cwd does not exist: "' + options.cwd  + '"');
+                    }
+                }
+                if (options.verbose) { spawnOpts.stdio = 'inherit'; }
 
-      // Handle options.
-      src += options.punctuation;
+                grunt.util.spawn({
+                    cmd: 'powershell',
+                    args: args,
+                    opts: spawnOpts
+                }, function () {
+                    callback.apply(this, arguments);
+                });
+            }
 
-      // Write the destination file.
-      grunt.file.write(f.dest, src);
+            var done = self.async();
+            fn(self, exec, done);
+        };
+    }
 
-      // Print a success message.
-      grunt.log.writeln('File "' + f.dest + '" created.');
-    });
-  });
-
+    for (var command in commands) {
+        var fn = commands[command];
+        grunt.registerMultiTask(command + 'WebAppPool', fn.description || '', wrapCommand(fn));
+    }
 };

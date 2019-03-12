@@ -3,7 +3,6 @@
 > Grunt integration for Powershell WebAppPool commands
 
 ## Getting Started
-This plugin requires Grunt `~0.4.5`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
@@ -17,73 +16,254 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-webapppool');
 ```
 
-## The "webapppool" task
+## The "NewWebAppPool" task
 
 ### Overview
-In your project's Gruntfile, add a section named `webapppool` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `NewWebAppPool` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
-  webapppool: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
+  NewWebAppPool: {
+       your_target: {
+            options: {
+                computername: 'target computername,' +
+                credential: 'user\domain',
+                name: 'name of the app pool'
+            }
+       }
+     }
 });
 ```
 
 ### Options
 
-#### options.separator
-Type: `String`
-Default value: `',  '`
+#### options.computername
+Type: `String`  
+Default value: the local computername
 
-A string value that is used to do something with whatever.
+Specifies the computers on which the command runs. The default is the local computer.
 
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
+#### options.credential
+Type: `String`  
+Default value: the current user
 
-A string value that is used to do something else with whatever else.
+Specifies a user account that has permission to perform this action. The default is the current user.
 
-### Usage Examples
+#### options.name
+Type: `String`  
+Default value: null
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+The name of the application pool for which the command is run.
 
-```js
-grunt.initConfig({
-  webapppool: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
+For full details on all the possible codes, please see the [New-WebAppPool documentation](https://docs.microsoft.com/en-us/powershell/module/webadminstration/new-webapppool).
 
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+
+## The "RemoveWebAppPool" task
+
+### Overview
+In your project's Gruntfile, add a section named `RemoveWebAppPool` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
-  webapppool: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
+  RemoveWebAppPool: {
+       your_target: {
+            options: {
+                computername: 'target computername,' +
+                credential: 'user\domain',
+                name: 'name of the app pool'
+            }
+       }
+     }
 });
 ```
+
+### Options
+
+#### options.computername
+Type: `String`  
+Default value: the local computername
+
+Specifies the computers on which the command runs. The default is the local computer.
+
+#### options.credential
+Type: `String`  
+Default value: the current user
+
+Specifies a user account that has permission to perform this action. The default is the current user.
+
+#### options.name
+Type: `String`  
+Default value: null
+
+The name of the application pool for which the command is run.
+
+For full details on all the possible codes, please see the [Remove-WebAppPool documentation](https://docs.microsoft.com/en-us/powershell/module/webadminstration/remove-webapppool).
+
+
+## The "RestartWebAppPool" task
+
+### Overview
+In your project's Gruntfile, add a section named `RestartWebAppPool` to the data object passed into `grunt.initConfig()`.
+
+```js
+grunt.initConfig({
+  RestartWebAppPool: {
+       your_target: {
+            options: {
+                computername: 'target computername,' +
+                credential: 'user\domain',
+                name: 'name of the app pool'
+            }
+       }
+     }
+});
+```
+
+### Options
+
+#### options.computername
+Type: `String`  
+Default value: the local computername
+
+Specifies the computers on which the command runs. The default is the local computer.
+
+#### options.credential
+Type: `String`  
+Default value: the current user
+
+Specifies a user account that has permission to perform this action. The default is the current user.
+
+#### options.name
+Type: `String`  
+Default value: null
+
+The name of the application pool for which the command is run.
+
+For full details on all the possible codes, please see the [Restart-WebAppPool documentation](https://docs.microsoft.com/en-us/powershell/module/webadminstration/restart-webapppool).
+
+
+## The "StartWebAppPool" task
+
+### Overview
+In your project's Gruntfile, add a section named `StartWebAppPool` to the data object passed into `grunt.initConfig()`.
+
+```js
+grunt.initConfig({
+  StartWebAppPool: {
+       your_target: {
+            options: {
+                computername: 'target computername,' +
+                credential: 'user\domain',
+                name: 'name of the app pool'
+            }
+       }
+     }
+});
+```
+
+### Options
+
+#### options.computername
+Type: `String`  
+Default value: the local computername
+
+Specifies the computers on which the command runs. The default is the local computer.
+
+#### options.credential
+Type: `String`  
+Default value: the current user
+
+Specifies a user account that has permission to perform this action. The default is the current user.
+
+#### options.name
+Type: `String`  
+Default value: null
+
+The name of the application pool for which the command is run.
+
+For full details on all the possible codes, please see the [Start-WebAppPool documentation](https://docs.microsoft.com/en-us/powershell/module/webadminstration/start-webapppool).
+
+## The "StatusWebAppPool" task
+
+### Overview
+In your project's Gruntfile, add a section named `StatusWebAppPool` to the data object passed into `grunt.initConfig()`.
+
+```js
+grunt.initConfig({
+  StatusWebAppPool: {
+       your_target: {
+            options: {
+                computername: 'target computername,' +
+                credential: 'user\domain',
+                name: 'name of the app pool'
+            }
+       }
+     }
+});
+```
+
+### Options
+
+#### options.computername
+Type: `String`  
+Default value: the local computername
+
+Specifies the computers on which the command runs. The default is the local computer.
+
+#### options.credential
+Type: `String`  
+Default value: the current user
+
+Specifies a user account that has permission to perform this action. The default is the current user.
+
+#### options.name
+Type: `String`  
+Default value: null
+
+The name of the application pool for which the command is run.
+
+For full details on all the possible codes, please see the [Status-WebAppPool documentation](https://docs.microsoft.com/en-us/powershell/module/webadminstration/get-webapppoolstate).
+
+## The "StopWebAppPool" task
+
+### Overview
+In your project's Gruntfile, add a section named `StopWebAppPool` to the data object passed into `grunt.initConfig()`.
+
+```js
+grunt.initConfig({
+  StopWebAppPool: {
+       your_target: {
+            options: {
+                computername: 'target computername,' +
+                credential: 'user\domain',
+                name: 'name of the app pool'
+            }
+       }
+     }
+});
+```
+
+### Options
+
+#### options.computername
+Type: `String`  
+Default value: the local computername
+
+Specifies the computers on which the command runs. The default is the local computer.
+
+#### options.credential
+Type: `String`  
+Default value: the current user
+
+Specifies a user account that has permission to perform this action. The default is the current user.
+
+#### options.name
+Type: `String`  
+Default value: null
+
+The name of the application pool for which the command is run.
+
+For full details on all the possible codes, please see the [Stop-WebAppPool documentation](https://docs.microsoft.com/en-us/powershell/module/webadminstration/stop-webapppool).
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
-
-## Release History
-_(Nothing yet)_
