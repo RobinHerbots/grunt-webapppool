@@ -1,7 +1,7 @@
 {
   "name": "@robinherbots/grunt-webapppool",
   "description": "Grunt integration for Powershell WebAppPool commands",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "homepage": "https://github.com/RobinHerbots/grunt-webapppool",
   "author": "Robin Herbots <robin.herbots@gmail.com>",
   "repository": {
