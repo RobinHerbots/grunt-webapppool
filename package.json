@@ -1,15 +1,12 @@
 {
-  "name": "grunt-webapppool",
+  "name": "@robinherbots/grunt-webapppool",
   "description": "Grunt integration for Powershell WebAppPool commands",
   "version": "0.0.3",
   "homepage": "https://github.com/RobinHerbots/grunt-webapppool",
-  "author": {
-    "name": "Robin Herbots",
-    "email": "robin.herbots@gmail.com"
-  },
+  "author": "Robin Herbots <robin.herbots@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/RobinHerbots/grunt-webapppool.git"
+    "url": "git+https://github.com/RobinHerbots/grunt-webapppool.git"
   },
   "bugs": {
     "url": "https://github.com/RobinHerbots/grunt-webapppool/issues"
@@ -39,5 +36,10 @@
     "powershell",
     "IIS",
     "AppPool"
-  ]
+  ],
+  "main": "Gruntfile.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  }
 }
