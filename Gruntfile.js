@@ -54,6 +54,8 @@ module.exports = function (grunt) {
 
 	});
 
+	// Actually load this plugin's task(s).
+	grunt.loadTasks('tasks');
 	// These plugins provide necessary tasks.
 	require("load-grunt-tasks")(grunt);
 	grunt.registerTask("default", ["availabletasks"]);
