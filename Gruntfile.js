@@ -8,7 +8,7 @@ module.exports = function (grunt) {
 		watch: {
 			dev: {
 				files: ["tasks/*.js", "lib/*.js", "test/*.js"],
-				tasks: ["jshint", "test"]
+				tasks: ["eslint", "test"]
 			}
 		},
 		eslint: {
@@ -41,21 +41,24 @@ module.exports = function (grunt) {
 				tagName: "v%VERSION%",
 				tagMessage: `Version %VERSION% (${grunt.template.today("yyyymmdd")})}`
 			}
+		},
+		availabletasks: {
+			tasks: {
+				options: {
+					filter: "exclude",
+					tasks: ["availabletasks", "default"],
+					groups: "bytype"
+				}
+			}
 		}
 
 	});
 
-	// Actually load this plugin's task(s).
-	grunt.loadTasks("tasks");
-
 	// These plugins provide necessary tasks.
 	require("load-grunt-tasks")(grunt);
+	grunt.registerTask("default", ["availabletasks"]);
 
 	// Whenever the "test" task is run, first clean the "tmp" dir, then run this
 	// plugin's task(s), then test the result.
 	grunt.registerTask("test", ["eslint", "mochacli"]);
-
-	// By default, lint and run all tests.
-	grunt.registerTask("default", ["test"]);
-
 };
